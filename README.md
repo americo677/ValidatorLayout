@@ -29,17 +29,18 @@ Librería de clases para validar archivos de texto plano, xlsx y csv.
 <h3>Estructura de clases</h3>
 <p>Primero necesitamos la estructura configurable de un documento compuesto por registros y columnas, donde cada columna podría ser validada con uno o más metodos.<p>
 <ul>
-<li><b>ObjectTypeValidator</b> En el nivel mas bajo tenemos una interface que implementa un método validate(String value)</li>
-<li>Con el objetivo de implementar el patrón strategia tenemos cuatro clases que implemntan la interface<ul>
-<li><b>ObjectDateValidator</b><li>
-<li><b>ObjectTypeValidator</b><li>
-<li><b>ObjectRegexValidator</b><li>
-</ul></li>
-<li><b>ItemValidator</b> tiene una lista de ObjectTypeValidator para poder realizar más de una validación al valor.</li>
+<li><b>ObjectValidatorInterface</b> En el nivel mas bajo tenemos una interface que implementa un método validate(String value)</li>
+<li>Con el objetivo de implementar el patrón strategia tenemos tres clases que implemntan la interface<ol>
+<li><b>ObjectDateValidator</b></li>
+<li><b>ObjectTypeValidator</b></li>
+<li><b>ObjectRegexValidator</b></li>
+</ol></li>
+<li><b>ItemValidator</b> tiene una lista de ObjectValidatorInterface para poder realizar más de una validación al valor.</li>
 <li><b>RowValidator</b> tiene una lista de ItemValidator que vendrian siendo las columnas de un archivo.</li>
 <li><b>DocumentValidator</b> tiene una lista de RowValidator ya que podría haber más de una tipo de renglón, cada tipo e renglón tiene su propia configuración de datos a validar.</li>
 </ul>
 <h3>Ejemplo para crear archivo de configuración desde las clases</h3>
+<small>
 DocumentValidator documentValidator=new DocumentValidator();
         documentValidator.setFlatFixedRowValue(new FlatFixedPositionValue(0,2));
         RowValidator itemsValidatorHeader=new RowValidator("01","Header");        
@@ -92,9 +93,9 @@ DocumentValidator documentValidator=new DocumentValidator();
             wr.close();
             bw.close();
         }catch(IOException e){};
-
+</small>
 <h3>Ejemplo de archivo de configuración en XML para un archivo fixed txt</h3>
-<code><?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<small><?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DocumentValidator>
     <flatFixedRowValue positionBegin="0" positionEnd="2"/>
     <listRowValidator description="Header" name="01">
@@ -146,13 +147,14 @@ DocumentValidator documentValidator=new DocumentValidator();
             <listObjectValidatorInterface xsi:type="objectRegexValidator" regularExpresion="\d{12}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </listItemValidator>
     </listRowValidator>
-</DocumentValidator></code>
-                
+</DocumentValidator></small>
+             
+<h3>Recorrido de archivos</h3>
 <p>Segundo necesitamos el recorrido de los diferentes tipos de archivos, para obtener sus valores y aplicar las validaciones el archivo de configuración.<p>
 <ul>
 <li><b>DocumentLayoutAbstract</b><ul>
-<li><b>FlatFixedDocumentLayout</b><li>
-<li><b>XLSXDocumentLayout</b><li>
+<li><b>FlatFixedDocumentLayout</b></li>
+<li><b>XLSXDocumentLayout</b></li>
 </ul></li>
 </ul>
 
