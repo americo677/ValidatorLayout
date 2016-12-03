@@ -30,7 +30,7 @@ Librería de clases para validar archivos de texto plano, xlsx y csv.
 <p>Primero necesitamos la estructura configurable de un documento compuesto por registros y columnas, donde cada columna podría ser validada con uno o más metodos.<p>
 <ul>
 <li><b>ObjectTypeValidator</b> En el nivel mas bajo tenemos una interface que implementa un método validate(String value)</li>
-<li><b>Con el objetivo de implementar el patrón strategia tenemos cuatro clases que implemntan la interface<ul>
+<li>Con el objetivo de implementar el patrón strategia tenemos cuatro clases que implemntan la interface<ul>
 <li><b>ObjectDateValidator</b><li>
 <li><b>ObjectTypeValidator</b><li>
 <li><b>ObjectRegexValidator</b><li>
