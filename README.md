@@ -40,7 +40,7 @@ Librería de clases para validar archivos de texto plano, xlsx y csv.
 <li><b>DocumentValidator</b> tiene una lista de RowValidator ya que podría haber más de una tipo de renglón, cada tipo e renglón tiene su propia configuración de datos a validar.</li>
 </ul>
 <h3>Ejemplo para crear archivo de configuración desde las clases</h3>
-<small>
+<p style='font-size: 8px;'>
 DocumentValidator documentValidator=new DocumentValidator();
         documentValidator.setFlatFixedRowValue(new FlatFixedPositionValue(0,2));
         RowValidator itemsValidatorHeader=new RowValidator("01","Header");        
@@ -84,7 +84,7 @@ DocumentValidator documentValidator=new DocumentValidator();
         documentValidator.addRowValidator(itemsValidatorBody);
         documentValidator.addRowValidator(itemsValidatorFooter);
         
-        File f=new File("C:\\Users\\jgonzalezc\\Desktop\\ValidadorLayout\\DocumentoValidatorXLSX.xml");
+        File f=new File('DocumentoValidatorXLSX.xml');
         try{
             FileWriter w = new FileWriter(f);
             BufferedWriter bw = new BufferedWriter(w);
@@ -93,7 +93,7 @@ DocumentValidator documentValidator=new DocumentValidator();
             wr.close();
             bw.close();
         }catch(IOException e){};
-</small>
+</p>
 <h3>Ejemplo de archivo de configuración en XML para un archivo fixed txt</h3>
 <small><?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DocumentValidator>
