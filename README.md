@@ -50,21 +50,18 @@ Librería de clases para validar archivos de texto plano, xlsx y csv.
 </ul>
 
 <h3>Ejemplo para crear archivo de configuración desde las clases</h3>
-<p style='font-size: 8px;'>
+```
 DocumentValidator documentValidator=new DocumentValidator();
         documentValidator.setFlatFixedRowValue(new FlatFixedPositionValue(0,2));
-        RowValidator itemsValidatorHeader=new RowValidator("01","Header");        
+        RowValidator itemsValidatorHeader=new RowValidator('01','Header');        
         itemsValidatorHeader.setFlatFixedTypeRow(new FlatFixedPositionValue(0,2,15));
-        itemsValidatorHeader.addItemValidator(new ItemValidator("tipo",true,"Identifica el tipo de registro. ","Debe ser numérico y siempre debe de contener 01"));
+        itemsValidatorHeader.addItemValidator(new ItemValidator('tipo',true,'Identifica el tipo de registro. ','Debe ser numérico y siempre debe de contener 01'));
         itemsValidatorHeader.getListItemValidator().get(0).setFlatFixedItemValue(new FlatFixedPositionValue(0,2));
-        itemsValidatorHeader.getListItemValidator().get(0).addObjectValidatorInterface(new ObjectRegexValidator("01"));
-        itemsValidatorHeader.addItemValidator(new ItemValidator("secuencia",true,"Número de registro incremental ascendente","Debe ser numérico"));
+        itemsValidatorHeader.getListItemValidator().get(0).addObjectValidatorInterface(new ObjectRegexValidator('01'));
+        itemsValidatorHeader.addItemValidator(new ItemValidator('secuencia',true,'Número de registro incremental ascendente','Debe ser numérico'));
         itemsValidatorHeader.getListItemValidator().get(1).setFlatFixedItemValue(new FlatFixedPositionValue(2,7));
-        itemsValidatorHeader.getListItemValidator().get(1).addObjectValidatorInterface(new ObjectRegexValidator("[0-9]{5}"));
-        itemsValidatorHeader.addItemValidator(new ItemValidator("fecha",true,"Fecha actual","Fecha del dia de hoy"));
-        itemsValidatorHeader.getListItemValidator().get(2).setFlatFixedItemValue(new FlatFixedPositionValue(7,15));
-        itemsValidatorHeader.getListItemValidator().get(2).addObjectValidatorInterface(new ObjectDateValidator(TypeOperationDateEnum.TODAY,"ddMMyyyy",0));
-        RowValidator itemsValidatorBody=new RowValidator("02","Body");
+        itemsValidatorHeader.getListItemValidator().get(1).addObjectValidatorInterface(new ObjectRegexValidator('[0-9]{5}'));
+        RowValidator itemsValidatorBody=new RowValidator('02','Body');
         itemsValidatorBody.setFlatFixedTypeRow(new FlatFixedPositionValue(0,2,32));
         itemsValidatorBody.addItemValidator(new ItemValidator("tipo",true,"Identifica el tipo de registro. ","Debe ser numérico y siempre debe de contener 02"));
         itemsValidatorBody.getListItemValidator().get(0).setFlatFixedItemValue(new FlatFixedPositionValue(0,2));
@@ -73,22 +70,6 @@ DocumentValidator documentValidator=new DocumentValidator();
         itemsValidatorBody.getListItemValidator().get(1).setFlatFixedItemValue(new FlatFixedPositionValue(2,7));
         itemsValidatorBody.getListItemValidator().get(1).addObjectValidatorInterface(new ObjectRegexValidator("[0-9]{5}"));
         itemsValidatorBody.addItemValidator(new ItemValidator("rfc",true,"RFC","RFC"));
-        itemsValidatorBody.getListItemValidator().get(2).setFlatFixedItemValue(new FlatFixedPositionValue(7,20));
-        itemsValidatorBody.getListItemValidator().get(2).addObjectValidatorInterface(new ObjectRegexValidator("^([A-Z,Ñ,&]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\\d]{3})$"));
-        itemsValidatorBody.addItemValidator(new ItemValidator("importe",true,"Es el monto de la transacción"," Debe estar informado y los últimos 2 dígitos serviran como decimales y no debe contener punto decimal"));
-        itemsValidatorBody.getListItemValidator().get(3).setFlatFixedItemValue(new FlatFixedPositionValue(20,32));
-        itemsValidatorBody.getListItemValidator().get(3).addObjectValidatorInterface(new ObjectRegexValidator("\\d{12}"));         
-        RowValidator itemsValidatorFooter=new RowValidator("03","Footer");
-        itemsValidatorFooter.setFlatFixedTypeRow(new FlatFixedPositionValue(0,2,19));
-        itemsValidatorFooter.addItemValidator(new ItemValidator("tipo",true,"Identifica el tipo de registro. ","Debe ser numérico y siempre debe de contener 03"));
-        itemsValidatorFooter.getListItemValidator().get(0).setFlatFixedItemValue(new FlatFixedPositionValue(0,2));
-        itemsValidatorFooter.getListItemValidator().get(0).addObjectValidatorInterface(new ObjectRegexValidator("03"));
-        itemsValidatorFooter.addItemValidator(new ItemValidator("secuencia",true,"Número de registro incremental ascendente","Debe ser numérico"));
-        itemsValidatorFooter.getListItemValidator().get(1).setFlatFixedItemValue(new FlatFixedPositionValue(2,7));
-        itemsValidatorFooter.getListItemValidator().get(1).addObjectValidatorInterface(new ObjectRegexValidator("[0-9]{5}"));
-        itemsValidatorFooter.addItemValidator(new ItemValidator("total",true,"Es el monto total de todos los importes"," Debe estar informado y los últimos 2 dígitos serviran como decimales y no debe contener punto decimal"));
-        itemsValidatorFooter.getListItemValidator().get(2).setFlatFixedItemValue(new FlatFixedPositionValue(7,19));
-        itemsValidatorFooter.getListItemValidator().get(2).addObjectValidatorInterface(new ObjectRegexValidator("\\d{12}")); 
 
         documentValidator.addRowValidator(itemsValidatorHeader);
         documentValidator.addRowValidator(itemsValidatorBody);
@@ -103,9 +84,11 @@ DocumentValidator documentValidator=new DocumentValidator();
             wr.close();
             bw.close();
         }catch(IOException e){};
-</p>
-<h3>Ejemplo de archivo de configuración en XML para un archivo fixed txt</h3>
-<small><xml version="1.0" encoding="UTF-8" standalone="yes">
+ ```    
+        
+<h3>Ejemplo de archivo de configuración en XML para un archivo fixed txt</h3> 
+```  
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DocumentValidator>
     <flatFixedRowValue positionBegin="0" positionEnd="2"/>
     <listRowValidator description="Header" name="01">
@@ -157,5 +140,5 @@ DocumentValidator documentValidator=new DocumentValidator();
             <listObjectValidatorInterface xsi:type="objectRegexValidator" regularExpresion="\d{12}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
         </listItemValidator>
     </listRowValidator>
-</DocumentValidator></small>
-         
+</DocumentValidator>
+ ```  
