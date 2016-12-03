@@ -14,7 +14,7 @@ Librería de clases para validar archivos de texto plano, xlsx y csv.
 
 <h3>Características</h3>
 <ul>
-<li>Validación de extructura de archivos: fixed txt y xlsx </li>
+<li>Validación de estructura de archivos: fixed txt y xlsx </li>
 <li>Uso de la librería POI para la lectura de xlsx</li>
 <li>Uso JAXB para la sintaxis en la clases y carga de XML</li>
 </ul>
