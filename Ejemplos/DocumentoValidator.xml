@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DocumentValidator>
+    <flatFixedRowValue positionBegin="0" positionEnd="2"/>
+    <listRowValidator description="Header" name="01">
+        <flatFixedTypeRow positionBegin="0" positionEnd="2" size="15"/>
+        <listItemValidator description="Identifica el tipo de registro. " name="tipo" validate="true" validateFormat="Debe ser numérico y siempre debe de contener 01">
+            <flatFixedItemValue positionBegin="0" positionEnd="2"/>
+            <listObjectValidatorInterface xsi:type="objectRegexValidator" regularExpresion="01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+        <listItemValidator description="Número de registro incremental ascendente" name="secuencia" validate="true" validateFormat="Debe ser numérico">
+            <flatFixedItemValue positionBegin="2" positionEnd="7"/>
+            <listObjectValidatorInterface xsi:type="objectRegexValidator" regularExpresion="[0-9]{5}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+        <listItemValidator description="Fecha actual" name="fecha" validate="true" validateFormat="Fecha del dia de hoy">
+            <flatFixedItemValue positionBegin="7" positionEnd="15"/>
+            <listObjectValidatorInterface xsi:type="objectDateValidator" addless="0" format="ddMMyyyy" typeOperationDateEnum="TODAY" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+    </listRowValidator>
+    <listRowValidator description="Body" name="02">
+        <flatFixedTypeRow positionBegin="0" positionEnd="2" size="32"/>
+        <listItemValidator description="Identifica el tipo de registro. " name="tipo" validate="true" validateFormat="Debe ser numérico y siempre debe de contener 02">
+            <flatFixedItemValue positionBegin="0" positionEnd="2"/>
+            <listObjectValidatorInterface xsi:type="objectRegexValidator" regularExpresion="02" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+        <listItemValidator description="Número de registro incremental ascendente" name="secuencia" validate="true" validateFormat="Debe ser numérico">
+            <flatFixedItemValue positionBegin="2" positionEnd="7"/>
+            <listObjectValidatorInterface xsi:type="objectRegexValidator" regularExpresion="[0-9]{5}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+        <listItemValidator description="RFC" name="rfc" validate="true" validateFormat="RFC">
+            <flatFixedItemValue positionBegin="7" positionEnd="20"/>
+            <listObjectValidatorInterface xsi:type="objectRegexValidator" regularExpresion="^([A-Z,Ñ,&amp;]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+        <listItemValidator description="Es el monto de la transacción" name="importe" validate="true" validateFormat=" Debe estar informado y los últimos 2 dígitos serviran como decimales y no debe contener punto decimal">
+            <flatFixedItemValue positionBegin="20" positionEnd="32"/>
+            <listObjectValidatorInterface xsi:type="objectRegexValidator" regularExpresion="\d{12}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+    </listRowValidator>
+    <listRowValidator description="Footer" name="03">
+        <flatFixedTypeRow positionBegin="0" positionEnd="2" size="19"/>
+        <listItemValidator description="Identifica el tipo de registro. " name="tipo" validate="true" validateFormat="Debe ser numérico y siempre debe de contener 03">
+            <flatFixedItemValue positionBegin="0" positionEnd="2"/>
+            <listObjectValidatorInterface xsi:type="objectRegexValidator" regularExpresion="03" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+        <listItemValidator description="Número de registro incremental ascendente" name="secuencia" validate="true" validateFormat="Debe ser numérico">
+            <flatFixedItemValue positionBegin="2" positionEnd="7"/>
+            <listObjectValidatorInterface xsi:type="objectRegexValidator" regularExpresion="[0-9]{5}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+        <listItemValidator description="Es el monto total de todos los importes" name="total" validate="true" validateFormat=" Debe estar informado y los últimos 2 dígitos serviran como decimales y no debe contener punto decimal">
+            <flatFixedItemValue positionBegin="7" positionEnd="19"/>
+            <listObjectValidatorInterface xsi:type="objectRegexValidator" regularExpresion="\d{12}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+    </listRowValidator>
+</DocumentValidator>
