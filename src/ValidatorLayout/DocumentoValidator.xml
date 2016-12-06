@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DocumentValidator>
+    <listItemsValidator name="HEADER">
+        <listItemValidator name="id">
+            <listObjectValidatorInterface xsi:type="regexObjectValidator" regularExpresion="\d{5}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+    </listItemsValidator>
+    <listItemsValidator name="BODY">
+        <listItemValidator name="codigoPostal">
+            <listObjectValidatorInterface xsi:type="regexObjectValidator" regularExpresion="\d{5}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+        <listItemValidator name="rfc">
+            <listObjectValidatorInterface xsi:type="regexObjectValidator" regularExpresion="^([A-Z,Ñ,&amp;]{3,4}([0-9]{2})(0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-9]|3[0-1])[A-Z|\d]{3})$" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+        <listItemValidator name="importe">
+            <listObjectValidatorInterface xsi:type="regexObjectValidator" regularExpresion="\d{1,5}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+            <listObjectValidatorInterface xsi:type="typeObjectValidator" typeObject="DOUBLE" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+        </listItemValidator>
+    </listItemsValidator>
+</DocumentValidator>
